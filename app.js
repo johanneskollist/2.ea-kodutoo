@@ -1,4 +1,5 @@
 /* TYPER */
+let score = 0;
 const TYPER = function () {
   if (TYPER.instance_) {
     return TYPER.instance_
@@ -72,9 +73,11 @@ TYPER.prototype = {
 
     if (letter === this.word.left.charAt(0)) {
       this.word.removeFirstLetter()
+	  score = score + 1
 
       if (this.word.left.length === 0) {
         this.guessed_words += 1
+		score = score + 5
 
         this.generateWord()
       }
