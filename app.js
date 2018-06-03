@@ -1,5 +1,7 @@
 /* TYPER */
 let score = 0;
+let highscore = 0;
+localStorage.setItem("highscore",0);
 const TYPER = function () {
   if (TYPER.instance_) {
     return TYPER.instance_
@@ -74,6 +76,7 @@ TYPER.prototype = {
     if (letter === this.word.left.charAt(0)) {
       this.word.removeFirstLetter()
 	  score = score + 1
+	  document.getElementById('skoor').innerHTML = "Score: " + score;
 
       if (this.word.left.length === 0) {
         this.guessed_words += 1
@@ -81,7 +84,9 @@ TYPER.prototype = {
 
         this.generateWord()
       }
-
+	  if (highscore  || score > parseInt(highscore)) {
+		localStorage.setItem("highscore", score);
+}
       this.word.Draw()
     }
   }
