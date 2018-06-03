@@ -76,12 +76,13 @@ TYPER.prototype = {
     if (letter === this.word.left.charAt(0)) {
       this.word.removeFirstLetter()
 	  score = score + 1
-	  document.getElementById('skoor').innerHTML = "Score: " + score;
+	  //drawScore()
+	 // document.getElementById('skoor').innerHTML = "Score: " + score;
 
       if (this.word.left.length === 0) {
         this.guessed_words += 1
 		score = score + 5
-
+		//drawScore()
         this.generateWord()
       }
 	  if (highscore  || score > parseInt(highscore)) {
@@ -126,6 +127,11 @@ function structureArrayByWordLength (words) {
   }
 
   return tempArray
+}
+function drawScore(){
+	ctx.textAlign = 'left'
+	ctx.font = '20px Courier'
+	ctx.fillText("Skoor: " + score, 80, 20)
 }
 
 window.onload = function () {
