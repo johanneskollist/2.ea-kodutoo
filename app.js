@@ -1,7 +1,7 @@
 /* TYPER */
 let score = 0;
 let highscore = 0;
-localStorage.setItem("highscore",0);
+localStorage.setItem('highscore',0);
 const TYPER = function () {
   if (TYPER.instance_) {
     return TYPER.instance_
@@ -80,13 +80,13 @@ TYPER.prototype = {
 	 // document.getElementById('skoor').innerHTML = "Score: " + score;
 
       if (this.word.left.length === 0) {
-        this.guessed_words += 1
+        this.guessedWords += 1
 		score = score + 5
 		//drawScore()
         this.generateWord()
       }
-	  if (highscore  || score > parseInt(highscore)) {
-		localStorage.setItem("highscore", score);
+	  if (score > parseInt(localStorage.getItem('highscore'), 10)) {
+  localStorage.setItem('highscore', score);
 }
       this.word.Draw()
     }
@@ -108,6 +108,9 @@ Word.prototype = {
     this.ctx.textAlign = 'center'
     this.ctx.font = '140px Courier'
     this.ctx.fillText(this.left, this.canvas.width / 2, this.canvas.height / 2)
+	//this.ctx.font '80px Courier'
+	this.ctx.fillText("Skoor on: " + score, this.canvas.width / 5, this.canvas.height / 10)
+	this.ctx.fillText("Kõrgskoor on: " + localStorage.getItem('highscore'), this.canvas.width / 5, (this.canvas.height / 10) * 2)
   },
 
   removeFirstLetter: function () {
@@ -127,11 +130,6 @@ function structureArrayByWordLength (words) {
   }
 
   return tempArray
-}
-function drawScore(){
-	ctx.textAlign = 'left'
-	ctx.font = '20px Courier'
-	ctx.fillText("Skoor: " + score, 80, 20)
 }
 
 window.onload = function () {
